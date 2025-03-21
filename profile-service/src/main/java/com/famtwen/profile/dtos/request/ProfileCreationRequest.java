@@ -1,0 +1,22 @@
+package com.famtwen.profile.dtos.request;
+
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+import java.time.LocalDate;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class ProfileCreationRequest {
+    String userId;
+    String username;
+    String email;
+    String firstName;
+    String lastName;
+    LocalDate dob;
+    String address;
+}

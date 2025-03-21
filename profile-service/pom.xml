@@ -8,7 +8,7 @@
 		<version>3.2.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.devteria</groupId>
+	<groupId>com.famtwen</groupId>
 	<artifactId>profile-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>profile-service</name>
@@ -24,6 +24,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-neo4j</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
