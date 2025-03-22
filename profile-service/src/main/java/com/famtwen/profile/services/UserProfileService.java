@@ -35,4 +35,10 @@ public class UserProfileService {
         return userProfileMapper.toUserProfileResponse(userProfile);
     }
 
+
+    public void deleteProfile(String userId)
+    {
+        UserProfile userProfile = userProfileRepository.findByUserId(userId).orElseThrow(()-> new RuntimeException("Profile not exsits"));
+        userProfileRepository.deleteById(userProfile.getId());
+    }
 }

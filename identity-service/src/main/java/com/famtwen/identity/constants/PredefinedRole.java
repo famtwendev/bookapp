@@ -1,4 +1,4 @@
-package com.famtwen.identity.constant;
+package com.famtwen.identity.constants;
 
 public class PredefinedRole {
     public static final String USER_ROLE = "USER";

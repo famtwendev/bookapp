@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.famtwen.identity.constant.PredefinedRole;
+import com.famtwen.identity.constants.PredefinedRole;
 import com.famtwen.identity.entity.Role;
 import com.famtwen.identity.entity.User;
 import com.famtwen.identity.repositories.RoleRepository;
