@@ -1,15 +1,13 @@
 package com.famtwen.profile.controllers;
 
-import com.famtwen.profile.dtos.request.ProfileCreationRequest;
 import com.famtwen.profile.dtos.response.UserProfileResponse;
 import com.famtwen.profile.services.UserProfileService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,26 +15,8 @@ import org.springframework.web.bind.annotation.*;
 public class UserProfileController {
     UserProfileService userProfileService;
 
-    @PostMapping("/users")
-    UserProfileResponse createProfile(@RequestBody ProfileCreationRequest request) {
-        return userProfileService.createProfile(request);
-    }
-
-
     @GetMapping("/users/{profileId}")
     UserProfileResponse getProfile(@PathVariable String profileId) {
         return userProfileService.getProfile(profileId);
-    }
-
-    @DeleteMapping("/users/{profileId}")
-    ResponseEntity<Void> deleteProfile(@PathVariable String profileId) {
-        try {
-            userProfileService.deleteProfile(profileId);
-            return ResponseEntity.noContent()
-                                 .build();
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                                 .build();
-        }
     }
 }
