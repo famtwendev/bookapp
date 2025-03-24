@@ -1,4 +1,4 @@
-package com.famtwen.identity.configuration;
+package com.famtwen.profile.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private static final String[] PUBLIC_ENDPOINTS = {
-        "/users","/users/registration", "/auth/token", "/auth/introspect", "/auth/logout", "/auth/refresh"
+
     };
 
     private final CustomJwtDecoder customJwtDecoder;
@@ -55,8 +55,4 @@ public class SecurityConfig {
         return jwtAuthenticationConverter;
     }
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(10);
-    }
 }
