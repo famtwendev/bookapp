@@ -54,9 +54,9 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
-    ApiResponse<String> deleteUser(@PathVariable String userId) {
+    ApiResponse<Void> deleteUser(@PathVariable String userId) {
         userService.deleteUser(userId);
-        return ApiResponse.<String>builder().result("User has been deleted").build();
+        return ApiResponse.<Void>builder().message("User has been deleted").build();
     }
 
     @PutMapping("/{userId}")

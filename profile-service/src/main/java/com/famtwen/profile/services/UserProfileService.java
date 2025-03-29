@@ -9,7 +9,10 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,7 +37,12 @@ public class UserProfileService {
     public UserProfileResponse getProfile(String id) {
         UserProfile userProfile = userProfileRepository.findById(id)
                                                        .orElseThrow(() -> new RuntimeException("Profile not exsits"));
+        return userProfileMapper.toUserProfileResponse(userProfile);
+    }
 
+    public UserProfileResponse getProfileByUserId(String userId) {
+        UserProfile userProfile = userProfileRepository.findByUserId(userId)
+                                                       .orElseThrow(() -> new RuntimeException("Profile not exsits"));
         return userProfileMapper.toUserProfileResponse(userProfile);
     }
 

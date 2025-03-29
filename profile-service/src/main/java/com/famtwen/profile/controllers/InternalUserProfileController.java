@@ -21,7 +21,6 @@ public class InternalUserProfileController {
         return userProfileService.createProfile(request);
     }
 
-
     @DeleteMapping("/internal/users/{profileId}")
     ResponseEntity<Void> deleteProfile(@PathVariable String profileId) {
         try {

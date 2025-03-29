@@ -44,10 +44,10 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     private String version;
 
     @NonFinal
-    private String[] publicEndpoint = {
+    private String[] publicEndpoints = {
             "/identity/auth/.*",
             "/identity/users/registration"
-     };
+    };
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -108,7 +108,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
 
     private boolean isPublishEndpoint(ServerHttpRequest request)
     {
-        return Arrays.stream(publicEndpoint).anyMatch(s -> request.getURI().getPath().matches(apiPrefix+version+s));
+        return Arrays.stream(publicEndpoints).anyMatch(s -> request.getURI().getPath().matches(apiPrefix+version+s));
     }
 
 }

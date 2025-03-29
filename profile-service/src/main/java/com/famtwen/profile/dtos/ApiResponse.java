@@ -23,8 +23,4 @@ public class ApiResponse<T> {
 
     private String message;
     private T result;
-
-    @Builder.Default
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "Asia/Ho_Chi_Minh")
-    ZonedDateTime timestamp = ZonedDateTime.now();
 }
