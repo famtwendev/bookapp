@@ -13,7 +13,9 @@ import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -34,29 +36,46 @@ public class UserProfileService {
         return userProfileMapper.toUserProfileResponse(userProfile);
     }
 
+
+    @PreAuthorize("hasRole('ADMIN')")
     public UserProfileResponse getProfile(String id) {
         UserProfile userProfile = userProfileRepository.findById(id)
                                                        .orElseThrow(() -> new RuntimeException("Profile not exsits"));
         return userProfileMapper.toUserProfileResponse(userProfile);
     }
 
-    public UserProfileResponse getProfileByUserId(String userId) {
+    public UserProfileResponse getMyProfile() {
+        Authentication authentication = SecurityContextHolder.getContext()
+                                                             .getAuthentication();
+        Jwt jwt = (Jwt) authentication.getPrincipal();
+
+        String userId = jwt.getClaim("userId")
+                           .toString();
+
+        if (!StringUtils.hasText(userId)) {
+            throw new IllegalArgumentException("Invalid User ID in JWT token");
+        }
+
+
         UserProfile userProfile = userProfileRepository.findByUserId(userId)
                                                        .orElseThrow(() -> new RuntimeException("Profile not exsits"));
         return userProfileMapper.toUserProfileResponse(userProfile);
     }
 
+
     @PreAuthorize("hasRole('ADMIN')")
     public List<UserProfileResponse> getAllProfiles() {
         var profiles = userProfileRepository.findAll();
 
-        return profiles.stream().map(userProfileMapper::toUserProfileResponse).toList();
+        return profiles.stream()
+                       .map(userProfileMapper::toUserProfileResponse)
+                       .toList();
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    public void deleteProfile(String userId)
-    {
-        UserProfile userProfile = userProfileRepository.findByUserId(userId).orElseThrow(()-> new RuntimeException("Profile not exsits"));
+    public void deleteProfile(String userId) {
+        UserProfile userProfile = userProfileRepository.findByUserId(userId)
+                                                       .orElseThrow(() -> new RuntimeException("Profile not exsits"));
         userProfileRepository.deleteById(userProfile.getId());
     }
 }

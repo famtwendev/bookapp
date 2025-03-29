@@ -92,6 +92,7 @@ public class UserService {
         profileClient.deleteProfile(userId);
         userRepository.deleteById(userId);
     }
+
     // Get All User By Id from DB
     @PreAuthorize("hasRole('ADMIN')")
     public List<UserResponse> getUsers() {
