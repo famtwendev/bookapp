@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
         configuration = {Authenticationrequestinterceptor.class})
 public interface ProfileClient {
     @PostMapping(value = "/internal/users", produces = MediaType.APPLICATION_JSON_VALUE)
-    ApiResponse<UserProfileResponse> createProfile(@RequestBody ProfileCreationRequest request);
+    UserProfileResponse createProfile(@RequestBody ProfileCreationRequest request);
 
     @DeleteMapping(value = "/internal/users/{profileId}")
     void deleteProfile(@PathVariable("profileId") String profileId);

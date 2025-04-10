@@ -13,13 +13,15 @@ spring:
     consumer:
       group-id: notification-group
       auto-offset-reset: earliest
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
 
-brevo:
-  uri: https://api.brevo.com
-  api-key: your-api-key
-  sender:
-    name: Famtwen
-    email: nptuyen121314@gmail.com
+notification:
+  brevo-url: https://api.brevo.com
+  name: Famtwen
+  email: nptuyen121314@gmail.com
+  brevo-apikey: <KEY>
+
 

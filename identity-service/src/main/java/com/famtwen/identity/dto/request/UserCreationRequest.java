@@ -2,6 +2,8 @@ package com.famtwen.identity.dto.request;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import com.famtwen.identity.validators.DobConstraint;
@@ -21,12 +23,15 @@ public class UserCreationRequest {
     @Size(min = 6, message = "INVALID_PASSWORD")
     String password;
 
+    @Email(message = "INVALID_EMAIL")
+    @NotBlank(message = "EMAIL_IS_REQUIRED")
+    String email;
+
     String firstName;
     String lastName;
 
     @DobConstraint(min = 10, message = "INVALID_DOB")
     LocalDate dob;
 
-    String address;
-
+    String city;
 }
