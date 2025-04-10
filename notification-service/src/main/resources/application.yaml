@@ -8,3 +8,11 @@ spring:
   data:
     mongodb:
       uri: mongodb://root:root@localhost:27017/notification-service?authSource=admin
+
+brevo:
+  uri: https://api.brevo.com
+  api-key: api-key
+  sender:
+    name: Famtwen
+    email: nptuyen121314@gmail.com
+
