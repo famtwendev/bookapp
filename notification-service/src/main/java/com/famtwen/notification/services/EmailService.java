@@ -48,7 +48,7 @@ public class EmailService {
                 .subject(request.getSubject())
                 .htmlContent(request.getHtmlContent())
                 .build();
-        log.info("Request: {}",emailRequest);
+        if (apiKey.length() <= 64 ) log.error("KEY ERORR: {}", apiKey);
         try {
             return emailClient.sendEmail(apiKey, emailRequest);
         } catch (FeignException e){
