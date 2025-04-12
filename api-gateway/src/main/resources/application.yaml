@@ -12,22 +12,27 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: identity-service
+        - id: identity_service
           uri: http://localhost:8080
           predicates:
             - Path=${app.api-prefix}${app.version}/identity/**
           filters:
             - StripPrefix=2
-        - id: profile-service
+        - id: profile_service
           uri: http://localhost:8081
           predicates:
             - Path=${app.api-prefix}${app.version}/profile/users/**
           filters:
             - StripPrefix=2
-        - id: notification-service
+        - id: notification_service
           uri: http://localhost:8082
           predicates:
             - Path=${app.api-prefix}${app.version}/notification/**
           filters:
             - StripPrefix=2
-
+        - id: post_service
+          uri: http://localhost:8083
+          predicates:
+            - Path=${app.api-prefix}${app.version}/post/**
+          filters:
+            - StripPrefix=2

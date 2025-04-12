@@ -24,6 +24,7 @@ public class PostController {
 
     @PostMapping("/create")
     ApiResponse<PostResponse> createPost(@RequestBody PostRequest request){
+        log.info("Create Post");
         return ApiResponse.<PostResponse>builder()
                 .result(postService.createPost(request))
                 .build();

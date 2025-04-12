@@ -1,5 +1,6 @@
 package com.famtwen.post.repository;
 
+
 import com.famtwen.post.entity.Post;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

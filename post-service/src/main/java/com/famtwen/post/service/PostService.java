@@ -4,8 +4,7 @@ import com.famtwen.post.dto.request.PostRequest;
 import com.famtwen.post.dto.response.PostResponse;
 import com.famtwen.post.entity.Post;
 import com.famtwen.post.mapper.PostMapper;
-import com.famtwen.post.repository.PostRepository;
-import lombok.AccessLevel;
+import com.famtwen.post.repository.PostRepository;import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.Authentication;
@@ -26,11 +25,11 @@ public class PostService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         Post post = Post.builder()
-                .content(request.getContent())
-                .userId(authentication.getName())
-                .createdDate(Instant.now())
-                .modifiedDate(Instant.now())
-                .build();
+                        .content(request.getContent())
+                        .userId(authentication.getName())
+                        .createdDate(Instant.now())
+                        .modifiedDate(Instant.now())
+                        .build();
 
         post = postRepository.save(post);
         return postMapper.toPostResponse(post);
@@ -41,8 +40,8 @@ public class PostService {
         String userId = authentication.getName();
 
         return postRepository.findAllByUserId(userId)
-                .stream()
-                .map(postMapper::toPostResponse)
-                .toList();
+                             .stream()
+                             .map(postMapper::toPostResponse)
+                             .toList();
     }
 }
