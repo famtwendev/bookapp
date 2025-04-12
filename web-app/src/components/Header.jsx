@@ -73,6 +73,11 @@ export default function Header() {
     handleMobileMenuClose();
   };
 
+  const handleOpenProfile = () => {
+    setAnchorEl(null);
+    window.location.href = "/profile";
+  };
+
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
@@ -85,149 +90,150 @@ export default function Header() {
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
-      <MenuItem onClick={handleLogout}>Log Out</MenuItem>
-    </Menu>
+      <Menu
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          id={menuId}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={isMenuOpen}
+          onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleOpenProfile}>Profile</MenuItem>
+        <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+        <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+      </Menu>
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 2 new mails" color="inherit">
-          <Badge badgeContent={2} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 4 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={4} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
+      <Menu
+          anchorEl={mobileMoreAnchorEl}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          id={mobileMenuId}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={isMobileMenuOpen}
+          onClose={handleMobileMenuClose}
+      >
+        <MenuItem>
+          <IconButton size="large" aria-label="show 2 new mails" color="inherit">
+            <Badge badgeContent={2} color="error">
+              <MailIcon />
+            </Badge>
+          </IconButton>
+          <p>Messages</p>
+        </MenuItem>
+        <MenuItem>
+          <IconButton
+              size="large"
+              aria-label="show 4 new notifications"
+              color="inherit"
+          >
+            <Badge badgeContent={4} color="error">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+          <p>Notifications</p>
+        </MenuItem>
+        <MenuItem onClick={handleProfileMenuOpen}>
+          <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="primary-search-account-menu"
+              aria-haspopup="true"
+              color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+          <p>Profile</p>
+        </MenuItem>
+      </Menu>
   );
 
   return (
-    <>
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="open drawer"
-        sx={{ mr: 2 }}
-      >
-        <Box
-          component={"img"}
-          style={{
-            width: "35px",
-            height: "35px",
-            borderRadius: 6,
-          }}
-          src="/logo/devteria-logo.png"
-        ></Box>
-      </IconButton>
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder="Search…"
-          inputProps={{ "aria-label": "search" }}
-        />
-      </Search>
-      <Box sx={{ flexGrow: 1 }} />
-      <Box sx={{ display: { xs: "none", md: "flex" } }}>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
+      <>
         <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ mr: 2 }}
+            onClick={() => (window.location.href = "/")}
         >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
+          <Box
+              component={"img"}
+              style={{
+                width: "35px",
+                height: "35px",
+                borderRadius: 6,
+              }}
+              src="/logo/devteria-logo.png"
+          ></Box>
         </IconButton>
-        <IconButton
-          size="large"
-          edge="end"
-          aria-label="account of current user"
-          aria-controls={menuId}
-          aria-haspopup="true"
-          onClick={handleProfileMenuOpen}
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-      </Box>
-      <Box sx={{ display: { xs: "flex", md: "none" } }}>
-        <IconButton
-          size="large"
-          aria-label="show more"
-          aria-controls={mobileMenuId}
-          aria-haspopup="true"
-          onClick={handleMobileMenuOpen}
-          color="inherit"
-        >
-          <MoreIcon />
-        </IconButton>
-      </Box>
-      {renderMobileMenu}
-      {renderMenu}
-    </>
+        <Search>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
+          />
+        </Search>
+        <Box sx={{ flexGrow: 1 }} />
+        <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            <Badge badgeContent={4} color="error">
+              <MailIcon />
+            </Badge>
+          </IconButton>
+          <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+          >
+            <Badge badgeContent={17} color="error">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+          <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+        </Box>
+        <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <IconButton
+              size="large"
+              aria-label="show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
+              color="inherit"
+          >
+            <MoreIcon />
+          </IconButton>
+        </Box>
+        {renderMobileMenu}
+        {renderMenu}
+      </>
   );
 }

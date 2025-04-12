@@ -16,11 +16,6 @@ import org.springframework.web.bind.annotation.*;
 public class InternalUserProfileController {
     UserProfileService userProfileService;
 
-    @GetMapping("/internal/users/myprofile")
-    UserProfileResponse getMyProfile() {
-        return userProfileService.getMyProfile();
-    }
-
     @PostMapping("/internal/users")
     UserProfileResponse createProfile(@RequestBody ProfileCreationRequest request) {
         return userProfileService.createProfile(request);

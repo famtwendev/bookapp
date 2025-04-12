@@ -26,4 +26,9 @@ public class UserProfileController {
     List<UserProfileResponse> getAllProfiles() {
         return userProfileService.getAllProfiles();
     }
+
+    @GetMapping("/users/my-profile")
+    UserProfileResponse getMyProfile() {
+        return userProfileService.getMyProfile();
+    }
 }

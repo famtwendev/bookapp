@@ -3,6 +3,8 @@ package com.famtwen.profile.services;
 import com.famtwen.profile.dtos.request.ProfileCreationRequest;
 import com.famtwen.profile.dtos.response.UserProfileResponse;
 import com.famtwen.profile.entities.UserProfile;
+import com.famtwen.profile.exception.AppException;
+import com.famtwen.profile.exception.ErrorCode;
 import com.famtwen.profile.mappers.UserProfileMapper;
 import com.famtwen.profile.repositories.UserProfileRepository;
 import lombok.AccessLevel;
@@ -58,7 +60,7 @@ public class UserProfileService {
 
 
         UserProfile userProfile = userProfileRepository.findByUserId(userId)
-                                                       .orElseThrow(() -> new RuntimeException("Profile not exsits"));
+                                                       .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
         return userProfileMapper.toUserProfileResponse(userProfile);
     }
 
